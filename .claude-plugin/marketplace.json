@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "megeredchian",
+  "description": "Internal Claude Code plugins for Megeredchian Law.",
+  "owner": {
+    "name": "Megeredchian Law"
+  },
+  "plugins": [
+    {
+      "name": "design-system",
+      "displayName": "Megeredchian Design System",
+      "description": "IBM Design Language and Carbon expertise — tokens, the 2x Grid, UI shell, the seventeen universal patterns, status indicators, and a contrast checker.",
+      "source": "./plugins/design-system",
+      "version": "1.0.0",
+      "category": "design",
+      "keywords": ["carbon", "ibm-design-language", "design-system", "accessibility"]
+    }
+  ]
+}

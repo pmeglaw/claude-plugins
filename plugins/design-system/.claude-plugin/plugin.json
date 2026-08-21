@@ -1,0 +1,11 @@
+{
+  "name": "design-system",
+  "displayName": "Megeredchian Design System",
+  "description": "IBM Design Language and Carbon expertise — tokens, the 2x Grid, UI shell, the seventeen universal patterns, status indicators, and a contrast checker.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Megeredchian Law"
+  },
+  "keywords": ["carbon", "ibm-design-language", "design-system", "accessibility", "ui"],
+  "license": "UNLICENSED"
+}
