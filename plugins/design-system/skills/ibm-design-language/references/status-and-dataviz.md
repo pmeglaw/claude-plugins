@@ -1,3 +1,5 @@
+<!-- source: https://github.com/carbon-design-system/carbon/pull/22215 · @carbon/react 1.114.0 · checked 2026-08-24 -->
+
 # Status indicators and data visualization
 
 ## Status indicators
@@ -17,6 +19,7 @@ Four variants. Pick by space and by how much attention the information deserves.
 ### The rules that bite
 
 - **Two of color, shape, symbol at minimum** — and counting type, at least three of the four elements for WCAG. Color alone never carries meaning.
+  - Carbon 1.112.0 added a compact, label-less mode to IconIndicator and ShapeIndicator (Preview tier). Using it moves the entire burden of the second signal onto shape. That is legitimate **only if the shapes are verified distinguishable in greyscale, pairwise** — not merely different. Without that verification the compact mode is a colour-only indicator with extra steps.
 - **3:1 contrast** between status colors and against the background. It should still be distinguishable in grayscale.
 - **Shape indicators need outlines**; icon indicators don't, because their symbols already carry contrast. This matters most for light yellows and oranges on light themes.
 - **More than five or six indicators on screen overwhelms.** Treat five as the budget.

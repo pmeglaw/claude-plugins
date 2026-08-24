@@ -3,6 +3,8 @@ name: ibm-design-language
 description: Design and build interfaces in the IBM Design Language and Carbon Design System — exact color/type/spacing/motion tokens, the 2x Grid, UI shell and global header, the seventeen universal patterns, status indicators, and accessibility floors. Use this whenever the work touches IBM, Carbon, @carbon/react, IBM Plex, "Carbon tokens", a UI shell or global header, or an enterprise/admin/product UI that should look like IBM — and also when someone asks a question this system already answers, such as "modal or toast?", "should this be disabled or read-only?", "what color for this status?", "how much space between these?", or "is this contrast good enough?", even if they never say the words IBM or Carbon.
 ---
 
+<!-- source: https://www.ibm.com/design/language/whats-new · @carbon/react 1.114.0 · checked 2026-08-24 -->
+
 # IBM Design Language & Carbon
 
 ## The thesis
@@ -133,7 +135,7 @@ Product code should never reference a raw hex, and ideally never a Carbon token 
 --seat-assigned-bg: var(--cds-layer-selected-01);   /* product meaning → system token */
 ```
 
-Two reasons this earns its keep. It makes intent readable in review — `--seat-conflict-border` says what a hex can't. And Carbon v12 is migrating token naming to the DTCG spec; when names change, a semantic layer means one file changes instead of every component.
+Two reasons this earns its keep. It makes intent readable in review — `--seat-conflict-border` says what a hex can't. And Carbon v12 is migrating token naming to the DTCG spec; when names change, a semantic layer means one file changes instead of every component. As of `@carbon/react` 1.114.0 that migration has real tooling (a v12 codemod in `@carbon/upgrade`) — and a codemod operates on this layer, so keeping it clean is the concrete v12 preparation. See `references/carbon-next.md`.
 
 ## Type
 
@@ -183,3 +185,14 @@ Run this before calling anything finished:
 ## A caution about v12
 
 Carbon v12 is published as a direction, not a shipped spec — no dates, no visual specimens. It arrives incrementally through `enable-v12-*` feature flags, all defaulting off, while v11 stays active. **Build v11 properly and opt into flags as they prove out.** Designing against an undated roadmap is how products end up half-migrated to something that never shipped. See `references/carbon-next.md` for what is actually shipping today.
+
+## Is this actually new?
+
+Footer "last updated" dates on carbondesignsystem.com and ibm.com/design/language are static-site BUILD stamps. They move on every deploy and are not evidence of a content change. Never start a docs refresh from one.
+
+Authoritative checks instead:
+
+- IDL → ibm.com/design/language/whats-new (the announcement page)
+- Carbon → `npm view @carbon/react time --json` (real publish dates) + the changelog for any version that moved
+
+Confirmed build-stamp-only false alarms: 2026-08-21 and 2026-08-24.
