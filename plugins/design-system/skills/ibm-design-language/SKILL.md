@@ -3,7 +3,7 @@ name: ibm-design-language
 description: Design and build interfaces in the IBM Design Language and Carbon Design System — exact color/type/spacing/motion tokens, the 2x Grid, UI shell and global header, the seventeen universal patterns, status indicators, and accessibility floors. Use this whenever the work touches IBM, Carbon, @carbon/react, IBM Plex, "Carbon tokens", a UI shell or global header, or an enterprise/admin/product UI that should look like IBM — and also when someone asks a question this system already answers, such as "modal or toast?", "should this be disabled or read-only?", "what color for this status?", "how much space between these?", or "is this contrast good enough?", even if they never say the words IBM or Carbon.
 ---
 
-<!-- source: https://www.ibm.com/design/language/whats-new · @carbon/react 1.114.0 · checked 2026-08-24 -->
+<!-- source: https://www.ibm.com/design/language/whats-new · @carbon/react 1.114.0 · checked 2026-08-24 · spacing scale corrected against @carbon/layout 11.57.0 generated source 2026-08-26 -->
 
 # IBM Design Language & Carbon
 
@@ -37,13 +37,13 @@ Load a reference file when you're actually in that territory — they're detaile
 
 These are the ones that get missed, and each one is visible at a glance to anyone who knows the system:
 
-- **8px mini unit.** Every dimension and gap is a multiple. Permitted spacing multiples: 1x, 2x, 3x, 4x, 6x, 8x, 10x, 12x. Element heights come from a fixed ladder — 24, 32, 40, 48, 64, 80px — never from padding math.
+- **8px mini unit, Carbon spacing scale.** Spacing values come from Carbon's token scale — **2, 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96, 160px** (spacing-01–13) — not from plain 8-multiples: 2/4 (micro), 12 and 40 are real Carbon steps, so never flag them as off-grid. The 1x/2x/3x/4x/6x/8x/10x/12x mini-unit multiples are the separate *layout sizing* rule, not the spacing set. Element heights come from a fixed ladder — 24, 32, 40, 48, 64, 80px — never from padding math; the one sanctioned off-ladder height is the 44px touch target (below).
 - **Zero border radius.** Carbon UI is square. The only rounded thing is a tag (16px) and a badge dot.
 - **IBM Plex**, flush left, sentence case. Never all-caps paragraphs. Never two emphasis devices on the same words ("belt and suspenders").
 - **Blue 60 `#0f62fe` is the only primary action color** across every IBM product. Other hues are used sparingly and for meaning, not decoration.
 - **Focus is 2px, `$focus`, inset** (`outline: 2px solid; outline-offset: -2px`). Never removed, never rounded, never a glow.
 - **Status needs two signals minimum** — color plus shape or symbol. Color alone never carries meaning.
-- **Touch targets 44px.** A 16px icon gets padding to reach it; the icon does not grow.
+- **Touch targets 44px — and 44 beats the ladder.** A 16px icon gets padding to reach it; the icon does not grow. 44 sits on neither the height ladder nor the spacing scale; the touch minimum is a WCAG requirement while the ladder is an aesthetic convention, so when they conflict the touch minimum wins. A 44px control is correct, not drift.
 - **Grays dominate.** If a screen reads as colorful, something has gone wrong.
 
 ## Decision tables
@@ -170,7 +170,7 @@ For CJK, Thai, Devanagari and Arabic, reduce size to 95% and keep the line heigh
 Run this before calling anything finished:
 
 - [ ] No raw hex or arbitrary px outside the token layer
-- [ ] Every spacing value is a permitted mini-unit multiple; every control height is on the ladder
+- [ ] Every spacing value is on the Carbon spacing scale (2/4/8/12/16/24/32/40/48/64/80/96/160); every control height is on the ladder or is a 44px touch target
 - [ ] Radius is 0 everywhere except tags
 - [ ] Focus visible on every interactive element, 2px inset, not removed anywhere
 - [ ] Every status carries two signals; no state distinguished by color alone

@@ -1,6 +1,6 @@
 # Tokens — color, type, space, grid, motion
 
-Values resolved against Carbon v11 source (`@carbon/colors`, `@carbon/themes`, `@carbon/type`, `@carbon/layout`, `@carbon/grid`, `@carbon/motion`). A ready-to-use CSS layer with both themes lives at `../assets/carbon-tokens.css`.
+Values resolved against Carbon v11 source (`@carbon/colors`, `@carbon/themes`, `@carbon/type`, `@carbon/layout`, `@carbon/grid`, `@carbon/motion`). A ready-to-use CSS layer with both themes lives at `../assets/carbon-tokens.css`. Spacing scale re-verified against `@carbon/layout` 11.57.0 generated source, 2026-08-26.
 
 ## Contents
 - [The palette](#the-palette)
@@ -148,9 +148,11 @@ Mini unit is **8px** in product and web. Spacing scale:
 | spacing-06 | 24 | | spacing-13 | 160 |
 | spacing-07 | 32 | | | |
 
-Permitted layout multiples of the base unit: **1x, 2x, 3x, 4x, 6x, 8x, 10x, 12x**.
+**The table above is the complete permitted spacing set** — note it is not plain 8-multiples: 2 and 4 (micro) and 12 and 40 are real Carbon steps. An audit that flags 12px or 40px as off-grid is wrong (this produced a false positive on 2026-08-26; corrected here against `@carbon/layout` 11.57.0 generated source). The **layout multiples** — 1x, 2x, 3x, 4x, 6x, 8x, 10x, 12x of the mini unit — are a separate rule governing element and layout *sizing*, not spacing gaps.
 
 Fixed sizes: xs 24, sm 32, md 40, lg 48, xl 64, 2xl 80. Icons: 16, 20, 24, 32px.
+
+**Conflict ruling (2026-08-26): the size ladder vs the 44px touch minimum.** 44 is on neither the ladder nor the spacing scale. The touch minimum is a WCAG requirement; the ladder is an aesthetic convention — **the touch minimum wins**. A control at 44px height, or padded to a 44px hit area, is correct, not drift.
 
 In print the mini unit scales with viewing distance — 2mm handheld, 4mm arm's reach, 8mm poster, 16mm human-scale, 32mm across a room, 64mm across a street — and type multiplies with it (4x posters, 8x human-scale, 32x across the street).
 
