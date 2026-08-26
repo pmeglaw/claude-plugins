@@ -195,4 +195,6 @@ Authoritative checks instead:
 - IDL → ibm.com/design/language/whats-new (the announcement page)
 - Carbon → `npm view @carbon/react time --json` (real publish dates) + the changelog for any version that moved
 
+carbondesignsystem.com is JS-rendered and unreliable for exact values. For any Carbon number — spacing, type, motion, colour — read the canonical npm package source (`@carbon/layout`, `@carbon/type`, `@carbon/motion`, `@carbon/colors`), not the docs site.
+
 Confirmed build-stamp-only false alarms: 2026-08-21 and 2026-08-24.
