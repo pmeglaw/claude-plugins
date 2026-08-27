@@ -11,7 +11,7 @@
       "displayName": "Megeredchian Design System",
       "description": "IBM Design Language and Carbon expertise — tokens, the 2x Grid, UI shell, the seventeen universal patterns, status indicators, and a contrast checker.",
       "source": "./plugins/design-system",
-      "version": "1.2.3",
+      "version": "1.2.4",
       "category": "design",
       "keywords": ["carbon", "ibm-design-language", "design-system", "accessibility"]
     }
