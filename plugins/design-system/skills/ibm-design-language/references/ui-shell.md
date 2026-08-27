@@ -63,6 +63,18 @@ Invoked by a right-side header icon and anchored to it. Consistent width, full v
 
 The switcher lives in a right panel. Switcher items are anything that changes which product occupies the shell; dividers group related items and should not separate every one.
 
+## Screen regions and panel behavior (Carbon 2x-grid grid influencers)
+
+Users expect certain content in certain zones. Carbon names **seven screen regions**, consistent across devices and breakpoints: **1 Header · 2 Global sidenav · 3 Local sidenav · 4 Dropdown menu · 5 Content · 6 Footer · 7 Dialog**. When placing a new surface, name which region it is; a surface that belongs to none of them is a smell.
+
+All vertical panels fill the full browser height. Three behaviors:
+
+- **Flexible** — collapsed rail + expanded state at a fixed, non-user-adjustable width; expands on hover over any part of the rail. When expanding it either condenses the content grid or pushes content past the browser edge.
+- **Fixed** — static width, no collapse, sits outside the responsive grid.
+- **Floating** — floats above the content area, doesn't affect the grid, conceals what's beneath, **must be user-dismissible**. Inline menus, dropdowns and tooltips also float.
+
+Hybrid sizing conventions (which dimension is grid-fluid vs fixed): header and toolbar are fluid-width / fixed-height (mini units); side panels and menus are fixed-width / fluid-height; data tables are fluid in both.
+
 ## Sense of place
 
 The header's job goes beyond linking. It is where users look to orient — and that covers **state as well as location**: which account they're using, whether they're logged in, and **whether they've entered a different mode**. If a product has a draft/published split, a sandbox, an impersonation session, or a non-production environment, the header is where that belongs, persistently, on every screen.

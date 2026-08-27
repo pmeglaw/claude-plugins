@@ -164,19 +164,19 @@ Form spacing: inputs are 40px tall in product regardless of context. Dedicated-p
 
 Divide any surface into 2, 4, 8, 16, 32 or 64 columns — pick one division and hold it. Always divide the **live area**, never the canvas boundary when a margin is present. Distribute gutters evenly. Type aligns to the gutter, not the canvas division.
 
-| Breakpoint | Width | Columns | Margin | Gutter |
-|---|---|---|---|---|
-| sm | 320px | 4 | 0 | 32px |
-| md | 672px | 8 | 16px | 32px |
-| lg | 1056px | 16 | 16px | 32px |
-| xlg | 1312px | 16 | 16px | 32px |
-| max | 1584px | 16 | 24px | 32px |
+| Breakpoint | Width | Columns | Col width | Margin | Gutter |
+|---|---|---|---|---|---|
+| sm | 320px | 4 | 80px (25%) | 0 | 32px |
+| md | 672px | 8 | 80px (12.5%) | 16px | 32px |
+| lg | 1056px | 16 | 64px (6.25%) | 16px | 32px |
+| xlg | 1312px | 16 | 80px (6.25%) | 16px | 32px |
+| max | 1584px | 16 | 96px (6.25%) | 24px | 32px |
 
 Three modes: **wide** (32px gutter, default), **narrow** (content hangs 16px into the gutter so type aligns while containers don't), **condensed** (2px, for dense data).
 
 **Above the max breakpoint (1584px)** the grid behaves per style model (Carbon 2x-grid usage guidance): **editorial** — content stays at max-width and centers (marketing, low-density pages); **product & docs** — content stays at max-width anchored to a left nav panel (most product UI and documentation); **high-density** — the grid spans the full browser width, so bigger screens show more (dashboards, catalogs, complex tools). Pick one per surface and hold it.
 
-Aspect ratios: 16:9, 4:3, 3:2, 2:1, 1:1. Measure width to the columns; height follows.
+Aspect ratios: 1:1, 2:1, 2:3, 3:2, 4:3, 16:9 — usable in portrait or landscape. Measure width to the columns; height follows.
 
 Video: 1920×1080 has a 7.5px mini unit allowing even 30px divisions; 8 columns suits most layouts.
 
