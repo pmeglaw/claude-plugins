@@ -1,6 +1,6 @@
 # Tokens — color, type, space, grid, motion
 
-Values resolved against Carbon v11 source (`@carbon/colors`, `@carbon/themes`, `@carbon/type`, `@carbon/layout`, `@carbon/grid`, `@carbon/motion`). A ready-to-use CSS layer with both themes lives at `../assets/carbon-tokens.css`. Spacing scale re-verified against `@carbon/layout` 11.57.0 generated source, 2026-08-26.
+Values resolved against Carbon v11 source (`@carbon/colors`, `@carbon/themes`, `@carbon/type`, `@carbon/layout`, `@carbon/grid`, `@carbon/motion`). A ready-to-use CSS layer with both themes lives at `../assets/carbon-tokens.css`. Spacing scale re-verified against `@carbon/layout` 11.57.0 generated source, 2026-08-26. Above-max style models, Plex fallback stacks and icon corner/angle rules added 2026-08-27 from `carbon-website` 2x-grid usage source, `@carbon/type` 11.66.0 and the IDL ui-icons design page source.
 
 ## Contents
 - [The palette](#the-palette)
@@ -152,6 +152,8 @@ Mini unit is **8px** in product and web. Spacing scale:
 
 Fixed sizes: xs 24, sm 32, md 40, lg 48, xl 64, 2xl 80. Icons: 16, 20, 24, 32px.
 
+Drawing a custom mark or glyph to sit beside Carbon icons (IDL UI-icon rules): corner radius **2px** on rounded shapes, increased only in multiples of two when the metaphor needs it; squared corners when they reflect the object's real form; arrow tips always square; angles at 45° (even anti-aliasing) or 15° increments. The zero-radius rule for components does not apply inside icon artwork.
+
 **Conflict ruling (2026-08-26): the size ladder vs the 44px touch minimum.** 44 is on neither the ladder nor the spacing scale. The touch minimum is a WCAG requirement; the ladder is an aesthetic convention — **the touch minimum wins**. A control at 44px height, or padded to a 44px hit area, is correct, not drift.
 
 In print the mini unit scales with viewing distance — 2mm handheld, 4mm arm's reach, 8mm poster, 16mm human-scale, 32mm across a room, 64mm across a street — and type multiplies with it (4x posters, 8x human-scale, 32x across the street).
@@ -172,6 +174,8 @@ Divide any surface into 2, 4, 8, 16, 32 or 64 columns — pick one division and 
 
 Three modes: **wide** (32px gutter, default), **narrow** (content hangs 16px into the gutter so type aligns while containers don't), **condensed** (2px, for dense data).
 
+**Above the max breakpoint (1584px)** the grid behaves per style model (Carbon 2x-grid usage guidance): **editorial** — content stays at max-width and centers (marketing, low-density pages); **product & docs** — content stays at max-width anchored to a left nav panel (most product UI and documentation); **high-density** — the grid spans the full browser width, so bigger screens show more (dashboards, catalogs, complex tools). Pick one per surface and hold it.
+
 Aspect ratios: 16:9, 4:3, 3:2, 2:1, 1:1. Measure width to the columns; height follows.
 
 Video: 1920×1080 has a 7.5px mini unit allowing even 30px divisions; 8 columns suits most layouts.
@@ -179,6 +183,12 @@ Video: 1920×1080 has a 7.5px mini unit allowing even 30px divisions; 8 columns 
 ## Type
 
 IBM Plex — Sans, Serif, Mono, Condensed; eight weights; 100+ Latin languages plus Arabic, CJK, Cyrillic, Devanagari, Greek, Hebrew, Thai. Mono fits every glyph in 600 units and is for code and specs only.
+
+Fallback stacks (verbatim from `@carbon/type` 11.66.0 — note sans falls back to `system-ui`, **not** Helvetica/Arial as older guides claim):
+
+- sans: `'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif`
+- serif: `'IBM Plex Serif', 'Georgia', Times, serif`
+- mono: `'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace`
 
 Scale steps (px): 12, 14, 16, 18, 20, 24, 28, 32, 36, 42, 48, 54, 60, 68, 76, 84, 92, 102, 112, 122, 132, 144, 156.
 
