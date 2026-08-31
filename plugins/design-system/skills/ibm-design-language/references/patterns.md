@@ -65,7 +65,7 @@ Hard rules:
 - Don't use one when the user must consult information outside it.
 - Dialogs must be user-initiated. A background process finishing is not a user action — use a toast.
 
-Buttons: cancel outermost left, primary outermost right, one primary only, full bleed to the bottom edge. One button = 50% width, right. Two = 50/50. Three = 25% each — right-aligned, or one flush left with two flush right; only the rightmost may be primary. Progress: cancel (ghost, left), previous + next grouped right at 25% each; the final step's Next takes the name of the final action.
+Buttons: cancel outermost left, primary outermost right, one primary only, full bleed to the bottom edge. One button = 50% width, right. Two = 50/50. Three = 25% each, right-aligned, only the rightmost may be primary. Progress: cancel (ghost, left), previous + next grouped right at 25% each; the final step's Next takes the name of the final action.
 
 Behavior: initial focus on the first element that accepts input — not on a button if there are inputs. Focus trapped until closed, then returned to the invoking element. Body scrolls with header and footer fixed. Validate before closing; keep the dialog open on error with an inline message. During a short load, spinner and overlay over the body with the primary button disabled.
 
@@ -190,8 +190,6 @@ Use for settings, filter and sort menus, profile menus, combo buttons — anythi
 
 Trigger sizes 48/40/32px; trigger icons 20 or 16px. Keep ~16px between interactive elements inside.
 
-**Tooltip vs toggletip** — they look alike but split on interactivity: a **tooltip** opens on hover/focus for brief, *non-interactive* supplemental text, and must never contain buttons, links or images (tooltips don't receive focus, so anything interactive inside is unreachable). A **toggletip** opens on click/Enter and is the vehicle for interactive content — it follows this disclosure pattern's focus rules.
-
 Keyboard: Enter or Space opens; focus moves to the first item; arrows navigate menu items; Tab moves between interactive elements in a settings menu; Esc closes.
 
 ## Disabled and read-only states
@@ -204,7 +202,7 @@ The distinction matters because **disabled components are not read by screen rea
 | Read-only | The content still needs reading — a running process, a lock, or view-only permissions | Keyboard-navigable but not operable. Text color unchanged, still passes 4.5:1. |
 | Hidden | The user lacks permission to know it exists | Absent entirely until permissions change. |
 
-Disabled styling: component 50% opacity, text 25%, icons 50%, no hover, `cursor: not-allowed`. Where a disabled control blocks a primary action, pair it with an inline warning explaining how to enable it. (Carbon states these two ways: the pattern page's opacity table says icons 50%, while the theme token `icon-disabled` is a 25% alpha on `icon-primary` — when styling with tokens, the token wins; don't flag the difference as a bug in either source.)
+Disabled styling: component 50% opacity, text 25%, icons 50%, no hover, `cursor: not-allowed`. Where a disabled control blocks a primary action, pair it with an inline warning explaining how to enable it.
 
 Read-only anatomy: transparent background (fluid fields keep their fill), border color de-emphasized, text color unchanged, signifier icons in `$icon-disabled`, arrow cursor. Keep the same structure and spacing as enabled.
 

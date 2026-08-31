@@ -1,6 +1,6 @@
 # Tokens — color, type, space, grid, motion
 
-Values resolved against Carbon v11 source (`@carbon/colors`, `@carbon/themes`, `@carbon/type`, `@carbon/layout`, `@carbon/grid`, `@carbon/motion`). A ready-to-use CSS layer with both themes lives at `../assets/carbon-tokens.css`. Spacing scale re-verified against `@carbon/layout` 11.57.0 generated source, 2026-08-26. Above-max style models, Plex fallback stacks and icon corner/angle rules added 2026-08-27 from `carbon-website` 2x-grid usage source, `@carbon/type` 11.66.0 and the IDL ui-icons design page source.
+Values resolved against Carbon v11 source (`@carbon/colors`, `@carbon/themes`, `@carbon/type`, `@carbon/layout`, `@carbon/grid`, `@carbon/motion`). A ready-to-use CSS layer with both themes lives at `../assets/carbon-tokens.css`.
 
 ## Contents
 - [The palette](#the-palette)
@@ -67,11 +67,11 @@ Because the palette is a uniform ladder, contrast becomes arithmetic. "Steps" = 
 | 10 | 60 → Black (5) | 50 → Black (4) |
 | White | 60 → Black (6) | 50 → Black (5) |
 
-The step rule is a fast filter, not a substitute for measurement — yellow and orange break it badly because their luminance doesn't track their grade number. Yellow 30 (`#f1c21b`), Carbon's warning color, is only 1.68:1 on white and fails the 3:1 requirement for graphical elements. Use yellow 50 (`#b28600`) or yellow 60 (`#8e6a00`) for warning *outlines and borders* on light themes; yellow 30 is fine on dark. Carbon does exactly this in its own chart alert stroke. Run the contrast script on anything yellow or orange.
+The step rule is a fast filter, not a substitute for measurement — yellow and orange break it badly because their luminance doesn't track their grade number. Yellow 30 (`#f1c21b`), Carbon's warning color, is only 1.68:1 on white and fails the 3:1 requirement for graphical elements. Use yellow 50 (`#b28600`) or yellow 60 (`#8e6a00`) for warning *outlines and borders* on light themes; yellow 30 is fine on dark. Carbon does exactly this in its own chart alert stroke. Run `scripts/check_contrast.py` on anything yellow or orange.
 
 ### Known contrast traps
 
-Run `python ${CLAUDE_PLUGIN_ROOT}/skills/ibm-design-language/scripts/check_contrast.py --preset status-light status-dark text-light text-dark` before finalising a palette — one call, every surface. These are the failures it finds every time, so you can design around them from the start rather than discovering them at review:
+Run `scripts/check_contrast.py --preset status-light status-dark text-light text-dark` before finalising a palette — one call, every surface. These are the failures it finds every time, so you can design around them from the start rather than discovering them at review:
 
 **Check marks against the surface they land on when hovered, not at rest.** In light themes rows, tiles and list items *lighten* on hover (`layer-01` #f4f4f4 → `layer-hover-01` #e8e8e8), so the resting surface is never the worst case. This is the single most common way an otherwise careful status palette fails.
 
@@ -87,6 +87,8 @@ Run `python ${CLAUDE_PLUGIN_ROOT}/skills/ibm-design-language/scripts/check_contr
 **The dark themes are comfortable throughout** — every status token clears 3:1 on background, layer-01 and hover. The asymmetry is worth knowing: if a design works in dark it tells you nothing about light, but the reverse is close to safe.
 
 Note what this does *not* mean. Carbon's `$support-warning` token is correct as a **fill** behind a dark icon and as the theme's semantic anchor; it just can't carry the contrast on its own as a border, stroke, dot or chart mark. Keep the token for fills and reach for the darker grade for the *drawn* part. Carbon does exactly this itself — its chart alert stroke is yellow 50, not yellow 30.
+
+The split has a limit: at indicator size (16–20px) the drawn part has to do real work. The outline is **1px minimum, 2px preferred at 16px**, and a light fill (yellow 30, orange 40, green 50) must not be the only substantial area of colour — a yellow 30 triangle with a hairline yellow 60 edge is still a 1.68:1 mark in grayscale. Either fill with the accessible grade too, or make the outline heavy enough that the shape reads without the fill. Run the check against the outline *and* ask whether the mark survives with the fill removed.
 
 Against a gradient, check text against the lowest-contrast stop regardless of where the text currently sits — users resize and respace text, and it will move.
 
@@ -148,13 +150,9 @@ Mini unit is **8px** in product and web. Spacing scale:
 | spacing-06 | 24 | | spacing-13 | 160 |
 | spacing-07 | 32 | | | |
 
-**The table above is the complete permitted spacing set** — note it is not plain 8-multiples: 2 and 4 (micro) and 12 and 40 are real Carbon steps. An audit that flags 12px or 40px as off-grid is wrong (this produced a false positive on 2026-08-26; corrected here against `@carbon/layout` 11.57.0 generated source). The **layout multiples** — 1x, 2x, 3x, 4x, 6x, 8x, 10x, 12x of the mini unit — are a separate rule governing element and layout *sizing*, not spacing gaps.
+Permitted layout multiples of the base unit: **1x, 2x, 3x, 4x, 6x, 8x, 10x, 12x**.
 
 Fixed sizes: xs 24, sm 32, md 40, lg 48, xl 64, 2xl 80. Icons: 16, 20, 24, 32px.
-
-Drawing a custom mark or glyph to sit beside Carbon icons (IDL UI-icon rules): corner radius **2px** on rounded shapes, increased only in multiples of two when the metaphor needs it; squared corners when they reflect the object's real form; arrow tips always square; angles at 45° (even anti-aliasing) or 15° increments. The zero-radius rule for components does not apply inside icon artwork.
-
-**Conflict ruling (2026-08-26): the size ladder vs the 44px touch minimum.** 44 is on neither the ladder nor the spacing scale. The touch minimum is a WCAG requirement; the ladder is an aesthetic convention — **the touch minimum wins**. A control at 44px height, or padded to a 44px hit area, is correct, not drift.
 
 In print the mini unit scales with viewing distance — 2mm handheld, 4mm arm's reach, 8mm poster, 16mm human-scale, 32mm across a room, 64mm across a street — and type multiplies with it (4x posters, 8x human-scale, 32x across the street).
 
@@ -164,31 +162,23 @@ Form spacing: inputs are 40px tall in product regardless of context. Dedicated-p
 
 Divide any surface into 2, 4, 8, 16, 32 or 64 columns — pick one division and hold it. Always divide the **live area**, never the canvas boundary when a margin is present. Distribute gutters evenly. Type aligns to the gutter, not the canvas division.
 
-| Breakpoint | Width | Columns | Col width | Margin | Gutter |
-|---|---|---|---|---|---|
-| sm | 320px | 4 | 80px (25%) | 0 | 32px |
-| md | 672px | 8 | 80px (12.5%) | 16px | 32px |
-| lg | 1056px | 16 | 64px (6.25%) | 16px | 32px |
-| xlg | 1312px | 16 | 80px (6.25%) | 16px | 32px |
-| max | 1584px | 16 | 96px (6.25%) | 24px | 32px |
+| Breakpoint | Width | Columns | Margin | Gutter |
+|---|---|---|---|---|
+| sm | 320px | 4 | 0 | 32px |
+| md | 672px | 8 | 16px | 32px |
+| lg | 1056px | 16 | 16px | 32px |
+| xlg | 1312px | 16 | 16px | 32px |
+| max | 1584px | 16 | 24px | 32px |
 
 Three modes: **wide** (32px gutter, default), **narrow** (content hangs 16px into the gutter so type aligns while containers don't), **condensed** (2px, for dense data).
 
-**Above the max breakpoint (1584px)** the grid behaves per style model (Carbon 2x-grid usage guidance): **editorial** — content stays at max-width and centers (marketing, low-density pages); **product & docs** — content stays at max-width anchored to a left nav panel (most product UI and documentation); **high-density** — the grid spans the full browser width, so bigger screens show more (dashboards, catalogs, complex tools). Pick one per surface and hold it.
-
-Aspect ratios: 1:1, 2:1, 2:3, 3:2, 4:3, 16:9 — usable in portrait or landscape. Measure width to the columns; height follows.
+Aspect ratios: 16:9, 4:3, 3:2, 2:1, 1:1. Measure width to the columns; height follows.
 
 Video: 1920×1080 has a 7.5px mini unit allowing even 30px divisions; 8 columns suits most layouts.
 
 ## Type
 
 IBM Plex — Sans, Serif, Mono, Condensed; eight weights; 100+ Latin languages plus Arabic, CJK, Cyrillic, Devanagari, Greek, Hebrew, Thai. Mono fits every glyph in 600 units and is for code and specs only.
-
-Fallback stacks (verbatim from `@carbon/type` 11.66.0 — note sans falls back to `system-ui`, **not** Helvetica/Arial as older guides claim):
-
-- sans: `'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular', sans-serif`
-- serif: `'IBM Plex Serif', 'Georgia', Times, serif`
-- mono: `'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace`
 
 Scale steps (px): 12, 14, 16, 18, 20, 24, 28, 32, 36, 42, 48, 54, 60, 68, 76, 84, 92, 102, 112, 122, 132, 144, 156.
 

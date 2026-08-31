@@ -1,5 +1,3 @@
-<!-- source: https://github.com/carbon-design-system/carbon/releases · @carbon/react 1.114.0 · checked 2026-08-24 -->
-
 # Carbon Next (v12) — direction, and what's actually shipping
 
 ## What IBM published
@@ -32,20 +30,6 @@ The Carbon Next page carries no numbers, no dates and no visual specimens. **Not
 | Carbon for AI | **Already stable in v11** — AI label, AI token suite, AI chat, AI variants of 12 core components. |
 | Carbon MCP | Public preview. Serves docs, code examples, charts and Labs to coding agents. |
 
-## What moved in @carbon/react 1.112.0–1.114.0 (checked 2026-08-24)
-
-Shipped, not declared:
-
-- **`Card` migrated from `@carbon/ibm-products` into `@carbon/react`** (1.114.0) — the first concrete "product-centered components opening to the community" landing in core. Composable `Card.Header/Title/Body/Footer`, `density`, AI-label decorator.
-- **A v12 migration path now exists in tooling** (1.114.0): `@carbon/upgrade` gained a v12 release codemod, and a `v12.md` migration guide landed in the repo.
-- **DTCG has shipped artifacts**: themes DTCG explorations (1.113.0), motion tokens published in DTCG format (1.114.0), build pipeline on Style Dictionary v5.
-- **Initial motion JS API** in `@carbon/motion` (1.113.0) — first shipped artifact of the "motion as structure" shift. Duration and easing token *values* unchanged.
-- `enable-v12-release` flag created in 1.112.0, default off like every other v12 flag.
-
-**Anticipated:** `@carbon/react` 1.115.0-rc.0 published 2026-08-24. Release candidate — direction only, nothing from it is doctrine.
-
-**Verified negative (baseline — start the next refresh here instead of re-deriving):** against 1.112.0–1.114.0 release bodies, PRs #22215/#22617/#22867/#22978, and `feature-flags.yml` diffed v11.111.0 → v11.114.0: zero token renames, removals, or default-value changes in this skill's scope; zero in-scope deprecations; every `enable-v12-*` flag still `enabled: false`; motion token values unchanged; the contrast trap table unchanged. Method: diff `packages/feature-flags/feature-flags.yml` between monorepo tags; read release bodies for the intervening minors only. Full table in the plugin repo's `DOCS-DIFF.md`.
-
 ## The v12 flags that exist right now
 
 All default to off. This is how v12 actually arrives — not as a migration weekend.
@@ -70,7 +54,7 @@ Read them together: nearly every one adds a **visible affordance** where v11 rel
 
 Four things worth doing now rather than later:
 
-1. **Keep a semantic token layer.** Product meaning points at system tokens; product code never touches a Carbon token directly. When the DTCG rename lands, one file changes. This stopped being hypothetical in 1.114.0: a migration path now exists in tooling (`@carbon/upgrade` v12 codemod + `v12.md` guide) even though v12 itself is unshipped. That changes what preparation means — no longer "wait", but "keep the semantic layer clean, because that layer is what a codemod operates on." A product with a one-file semantic layer migrates in one file; a product referencing Carbon tokens directly at every call site migrates everywhere. (The layer itself: Token discipline in SKILL.md.)
+1. **Keep a semantic token layer.** Product meaning points at system tokens; product code never touches a Carbon token directly. When the DTCG rename lands, one file changes.
 2. **Don't hand-build what's about to be given away** — data grids, side panels, tearsheets, page headers are in the Carbon for IBM Products set.
 3. **Treat motion as structure.** A move between levels should read as one continuous transition that tells you where you went, not several independent fades.
 4. **If the product has an AI surface**, use Carbon for AI — the AI label, the explainability popover, and the AI token set — rather than a bespoke "magic" treatment.
@@ -89,4 +73,4 @@ The framework for identifying AI-generated content and delivering explainability
 
 ## The caution
 
-Build v11 properly and opt into flags as they prove out. Designing against an undated roadmap is how products end up half-migrated to something that never shipped. Both of these are true at once: v12 is still a direction with no dates and no visual specimens, *and* its migration mechanism (codemod + guide) already ships — so preparation is concrete work on the semantic token layer, not speculation about the destination.
+Build v11 properly and opt into flags as they prove out. Designing against an undated roadmap is how products end up half-migrated to something that never shipped.

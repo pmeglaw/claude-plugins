@@ -1,5 +1,3 @@
-<!-- source: https://github.com/carbon-design-system/carbon/pull/22215 · @carbon/react 1.114.0 · checked 2026-08-24 -->
-
 # Status indicators and data visualization
 
 ## Status indicators
@@ -18,12 +16,11 @@ Four variants. Pick by space and by how much attention the information deserves.
 
 ### The rules that bite
 
-- **Two of color, shape, symbol at minimum** — and counting type, at least three of the four elements for WCAG. Color alone never carries meaning.
-  - Carbon 1.112.0 added a compact, label-less mode to IconIndicator and ShapeIndicator (Preview tier). Using it moves the entire burden of the second signal onto shape. That is legitimate **only if the shapes are verified distinguishable in greyscale, pairwise** — not merely different. Without that verification the compact mode is a colour-only indicator with extra steps.
-- **3:1 contrast** between status colors and against the background. It should still be distinguishable in grayscale.
-- **Shape indicators need outlines**; icon indicators don't, because their symbols already carry contrast. This matters most for light yellows and oranges on light themes.
+- **Two of color, shape, symbol at minimum, in the mark itself.** The label is a third element for WCAG, not a substitute for the second: a legend of same-shaped dots in different colors fails even with perfect labels, because the marks are indistinguishable in grayscale and in a table cell scanned at speed. Color alone never carries meaning.
+- **3:1 contrast** between status colors and against the background — the *hovered* background (`layer-hover-01`, #e8e8e8 in light themes), not white. Verify with `scripts/check_contrast.py --preset status-light status-dark` and **name the script and paste its summary line in your answer**; a table of ratios with no script named reads as unverified. It should still be distinguishable in grayscale.
+- **Every shape indicator gets its own shape AND a 1px outline** (filled circle, hollow ring, triangle, square, dashed ring — one per state, plus the outline stroke). The outline is what keeps light yellows and oranges legible on light themes; the distinct shape is what keeps the set legible in grayscale. Icon indicators need neither, because the symbol already carries both contrast and identity. Don't mix: a legend is all shape indicators (shape + outline) or all icon indicators.
 - **More than five or six indicators on screen overwhelms.** Treat five as the budget.
-- **Avoid using the same shape in different colors within one experience.** If a spatial map forces a constant shape (every seat is a square), compensate with a distinct symbol or texture per state and say so explicitly.
+- **Never use the same shape in different colors within one experience.** If the brief asks for "a dot per state", that is the brief asking for a color-only palette — give each state its own shape (filled circle, hollow ring, triangle, square, dashed ring) or a symbol inside a constant shape. If a spatial map genuinely forces a constant shape (every seat is a square), compensate with a distinct symbol or texture per state and say so explicitly. Do not present the shapes as optional or the label as making them redundant.
 - When several statuses roll up into one, **the group takes the highest-attention color of its members** — green, yellow and red underneath means red on top.
 - Place indicators before labels; left-align icons with text when stacked so the column scans. Don't let variable label lengths push icons out of alignment.
 - Don't use a status indicator where no action is needed and the information isn't significant — plain text is better than visual noise.
@@ -39,7 +36,7 @@ Four variants. Pick by space and by how much attention the information deserves.
 | Green 50 `#24a148` | Normal, success |
 | Blue 70 `#0043ce` | Passive notification, information, in progress |
 | Purple 60 `#8a3ffc` | Outlier, undefined status |
-| Gray 60 `#6f6f6f` | **Draft, not started** |
+| Gray 60 `#6f6f6f` | **Draft, not started** — use the palette grade, not `$icon-secondary` (gray 70) or `$text-helper`; those are text/icon tokens, not the status colour |
 
 Gray-for-draft and purple-for-undefined are easy to miss and solve real problems — a draft/published product already has its color decided.
 

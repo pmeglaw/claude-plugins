@@ -2,6 +2,8 @@
 
 The header is the most-seen surface in any IBM product, and the pattern is stricter than it looks because its value comes from being identical everywhere.
 
+**Scope: products only.** The shell is the chrome of a tool a user is signed into. It does not appear on marketing, landing, documentation-marketing or editorial pages — those are expressive surfaces and get a light masthead in the page's own type (wordmark, a few text links, one CTA on the page's grid). Reaching for the shell on a landing page is the productive/expressive mix-up in its most visible form.
+
 ## The organising axis
 
 **Left to right runs product → global.** The left side holds what's relevant inside this product. The middle holds system-level controls. The far right holds the most global thing there is — the switcher, which spans products.
@@ -62,18 +64,6 @@ At narrow widths the header links move into the left panel *above* the existing 
 Invoked by a right-side header icon and anchored to it. Consistent width, full viewport height, flush right, **floats over page content**. Multiple right panels may exist but only one may be open at a time. When open, the triggering icon is outlined with its bottom border flowing into the panel. Dismiss by selecting an item or clicking the icon again. **Right panel items have no selected state**, even when the user is currently inside one.
 
 The switcher lives in a right panel. Switcher items are anything that changes which product occupies the shell; dividers group related items and should not separate every one.
-
-## Screen regions and panel behavior (Carbon 2x-grid grid influencers)
-
-Users expect certain content in certain zones. Carbon names **seven screen regions**, consistent across devices and breakpoints: **1 Header · 2 Global sidenav · 3 Local sidenav · 4 Dropdown menu · 5 Content · 6 Footer · 7 Dialog**. When placing a new surface, name which region it is; a surface that belongs to none of them is a smell.
-
-All vertical panels fill the full browser height. Three behaviors:
-
-- **Flexible** — collapsed rail + expanded state at a fixed, non-user-adjustable width; expands on hover over any part of the rail. When expanding it either condenses the content grid or pushes content past the browser edge.
-- **Fixed** — static width, no collapse, sits outside the responsive grid.
-- **Floating** — floats above the content area, doesn't affect the grid, conceals what's beneath, **must be user-dismissible**. Inline menus, dropdowns and tooltips also float.
-
-Hybrid sizing conventions (which dimension is grid-fluid vs fixed): header and toolbar are fluid-width / fixed-height (mini units); side panels and menus are fixed-width / fluid-height; data tables are fluid in both.
 
 ## Sense of place
 
